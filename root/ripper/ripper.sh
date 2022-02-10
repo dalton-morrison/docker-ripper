@@ -82,7 +82,7 @@ while true; do
          makemkvcon --profile=/config/default.mmcp.xml -r --decrypt --minlength=600 mkv disc:"$BLURAYNUM" all "$BDPATH" >>$LOGFILE 2>&1
       fi
       # permissions
-      chown -R $USER:$GROUP "$STORAGE_BD" && chmod -R g+rw "$STORAGE_BD"
+      chown -R $PUID:$GUID "$STORAGE_BD" && chmod -R g+rw "$STORAGE_BD"
       if [ "$SEPARATERAWFINISH" = 'true' ]; then
          BDFINISH="$STORAGE_BD"/finished/
          mv -v "$BDPATH" "$BDFINISH"
@@ -107,7 +107,7 @@ while true; do
          makemkvcon --profile=/config/default.mmcp.xml -r --decrypt --minlength=600 mkv disc:"$DVDNUM" all "$DVDPATH" >>$LOGFILE 2>&1
       fi
       # permissions
-      chown -R $USER:$GROUP "$STORAGE_DVD" && chmod -R g+rw "$STORAGE_DVD"
+      chown -R $PUID:$GUID "$STORAGE_DVD" && chmod -R g+rw "$STORAGE_DVD"
       if [ "$SEPARATERAWFINISH" = 'true' ]; then
          DVDFINISH="$STORAGE_DVD"/finished/
          mv -v "$DVDPATH" "$DVDFINISH"
@@ -131,7 +131,7 @@ while true; do
          echo "$(date "+%d.%m.%Y %T") : Done! Ejecting Disk"
          eject $DRIVE >>$LOGFILE 2>&1
          # permissions
-         chown -R $USER:$GROUP "$STORAGE_CD" && chmod -R g+rw "$STORAGE_CD"
+         chown -R $PUID:$GUID "$STORAGE_CD" && chmod -R g+rw "$STORAGE_CD"
       else
          DISKLABEL=$(echo $INFO | grep $DRIVE | grep -o -P '(?<=",").*(?=",")')
          ISOPATH="$STORAGE_DATA"/"$DISKLABEL"/"$DISKLABEL".iso
@@ -148,7 +148,7 @@ while true; do
          echo "$(date "+%d.%m.%Y %T") : Done! Ejecting Disk"
          eject $DRIVE >>$LOGFILE 2>&1
          # permissions
-         chown -R nobody:users "$STORAGE_DATA" && chmod -R g+rw "$STORAGE_DATA"
+         chown -R $PUID:$GUID "$STORAGE_DATA" && chmod -R g+rw "$STORAGE_DATA"
       fi
    fi
    # Wait a minute
