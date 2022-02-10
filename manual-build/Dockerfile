@@ -46,4 +46,4 @@ RUN rm -rf \
     	/tmp/* \
     	/var/lib/apt/lists/* \
     	/var/tmp/* \
-        /install/* \
+        /install/*
